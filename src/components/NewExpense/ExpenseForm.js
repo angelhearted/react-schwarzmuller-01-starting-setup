@@ -1,7 +1,7 @@
 import "./ExpenseForm.css";
 import { useState } from "react";
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
@@ -43,10 +43,12 @@ const ExpenseForm = () => {
     e.preventDefault();
 
     const expenseData = {
+      id: Math.random(),
       title: enteredTitle,
       amount: enteredAmount,
       date: new Date(enteredDate),
     };
+    props.onAddExpense(expenseData);
     console.log(expenseData);
     setEnteredTitle("");
     setEnteredAmount("");
