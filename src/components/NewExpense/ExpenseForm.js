@@ -41,15 +41,24 @@ const ExpenseForm = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    const title = enteredTitle.trim();
+    const amount = enteredAmount.trim();
+    const date = enteredDate.trim();
+
+    if (title === "" || amount === "" || date === "") {
+      return;
+    }
 
     const expenseData = {
       id: Math.random(),
-      title: enteredTitle,
-      amount: enteredAmount,
-      date: new Date(enteredDate),
+      title: title,
+      amount: amount,
+      date: new Date(date),
     };
     props.onAddExpense(expenseData);
+    props.toggleForm();
     console.log(expenseData);
+
     setEnteredTitle("");
     setEnteredAmount("");
     setEnteredDate("");
@@ -88,6 +97,9 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="button" onClick={props.toggleForm}>
+          Cancel
+        </button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
