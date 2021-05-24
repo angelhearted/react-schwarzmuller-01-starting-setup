@@ -52,7 +52,7 @@ const ExpenseForm = (props) => {
     const expenseData = {
       id: Math.random(),
       title: title,
-      amount: amount,
+      amount: +amount,
       date: new Date(date),
     };
     props.onAddExpense(expenseData);
